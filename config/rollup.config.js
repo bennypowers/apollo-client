@@ -60,7 +60,7 @@ function prepareCJSMinified(input) {
   return {
     input,
     output: {
-      file: input.replace('.js', '.min.js'),
+      file: input.replace('.cjs', '.min.cjs'),
       format: 'cjs',
     },
     plugins: [
@@ -91,7 +91,7 @@ function prepareBundle({
       return isExternal(id, parentId, true);
     },
     output: {
-      file: `${dir}/${bundleName}.cjs.js`,
+      file: `${dir}/${bundleName}.cjs`,
       format: 'cjs',
       sourcemap: true,
       exports: 'named',
@@ -109,10 +109,10 @@ export default [
   // Convert the ESM entry point to a single CJS bundle.
   prepareCJS(
     './dist/core/index.js',
-    './dist/apollo-client.cjs.js',
+    './dist/apollo-client.cjs',
   ),
   // Minify that single CJS bundle.
   prepareCJSMinified(
-    './dist/apollo-client.cjs.js',
+    './dist/apollo-client.cjs',
   ),
 ];
